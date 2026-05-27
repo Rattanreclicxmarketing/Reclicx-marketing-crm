@@ -1,47 +1,183 @@
-<x-guest-layout>
-    <!-- Session Status -->
-    <x-auth-session-status class="mb-4" :status="session('status')" />
+<!DOCTYPE html>
+<html>
+<head>
+
+    <title>RECLICX CRM LOGIN</title>
+
+    <meta charset="UTF-8">
+
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+        }
+
+        body{
+            font-family:Arial;
+            background:#111827;
+            height:100vh;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+        }
+
+        .login-box{
+            width:400px;
+            background:#fff;
+            padding:40px;
+            border-radius:15px;
+            box-shadow:0 0 25px rgba(0,0,0,0.3);
+        }
+
+        .logo{
+            text-align:center;
+            font-size:30px;
+            font-weight:bold;
+            color:#2563eb;
+            margin-bottom:10px;
+        }
+
+        .sub{
+            text-align:center;
+            color:#666;
+            margin-bottom:30px;
+        }
+
+        input{
+            width:100%;
+            padding:14px;
+            border:1px solid #ddd;
+            border-radius:8px;
+            margin-bottom:18px;
+            font-size:15px;
+        }
+
+        button{
+            width:100%;
+            padding:14px;
+            border:none;
+            background:#2563eb;
+            color:#fff;
+            border-radius:8px;
+            font-size:16px;
+            cursor:pointer;
+        }
+
+        button:hover{
+            background:#1d4ed8;
+        }
+
+        .remember{
+            margin-bottom:18px;
+            font-size:14px;
+        }
+
+        .forgot{
+            display:block;
+            text-align:right;
+            margin-bottom:15px;
+            color:#2563eb;
+            text-decoration:none;
+            font-size:14px;
+        }
+
+        .forgot:hover{
+            text-decoration:underline;
+        }
+
+        .error{
+            color:red;
+            font-size:14px;
+            margin-bottom:10px;
+        }
+
+    </style>
+
+</head>
+<body>
+
+<div class="login-box">
+
+    <div class="logo">
+        RECLICX CRM
+    </div>
+
+    <div class="sub">
+        Login To Continue
+    </div>
+
+    @if(session('status'))
+
+        <div class="error">
+            {{ session('status') }}
+        </div>
+
+    @endif
 
     <form method="POST" action="{{ route('login') }}">
+
         @csrf
 
-        <!-- Email Address -->
-        <div>
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
+        <input
+            type="email"
+            name="email"
+            placeholder="Enter Email"
+            required
+        >
+
+        @error('email')
+
+            <div class="error">
+                {{ $message }}
+            </div>
+
+        @enderror
+
+        <input
+            type="password"
+            name="password"
+            placeholder="Enter Password"
+            required
+        >
+
+        @error('password')
+
+            <div class="error">
+                {{ $message }}
+            </div>
+
+        @enderror
+
+        <div class="remember">
+
+            <input type="checkbox" name="remember">
+
+            Remember Me
+
         </div>
 
-        <!-- Password -->
-        <div class="mt-4">
-            <x-input-label for="password" :value="__('Password')" />
+        @if (Route::has('password.request'))
 
-            <x-text-input id="password" class="block mt-1 w-full"
-                            type="password"
-                            name="password"
-                            required autocomplete="current-password" />
+            <a class="forgot"
+               href="{{ route('password.request') }}">
 
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
-        </div>
+                Forgot Password?
 
-        <!-- Remember Me -->
-        <div class="block mt-4">
-            <label for="remember_me" class="inline-flex items-center">
-                <input id="remember_me" type="checkbox" class="rounded dark:bg-gray-900 border-gray-300 dark:border-gray-700 text-indigo-600 shadow-sm focus:ring-indigo-500 dark:focus:ring-indigo-600 dark:focus:ring-offset-gray-800" name="remember">
-                <span class="ms-2 text-sm text-gray-600 dark:text-gray-400">{{ __('Remember me') }}</span>
-            </label>
-        </div>
+            </a>
 
-        <div class="flex items-center justify-end mt-4">
-            @if (Route::has('password.request'))
-                <a class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800" href="{{ route('password.request') }}">
-                    {{ __('Forgot your password?') }}
-                </a>
-            @endif
+        @endif
 
-            <x-primary-button class="ms-3">
-                {{ __('Log in') }}
-            </x-primary-button>
-        </div>
+        <button type="submit">
+
+            LOGIN
+
+        </button>
+
     </form>
-</x-guest-layout>
+
+</div>
+
+</body>
+</html>
