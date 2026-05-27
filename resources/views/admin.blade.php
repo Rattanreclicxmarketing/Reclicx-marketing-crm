@@ -194,6 +194,69 @@ button:hover{
     font-weight:700;
 }
 
+/* FILTER BAR */
+
+.filter-bar{
+
+    margin-bottom:30px;
+
+}
+
+.filter-bar form{
+
+    display:flex;
+
+    gap:15px;
+
+    align-items:center;
+
+    flex-wrap:wrap;
+
+}
+
+.filter-bar input{
+
+    width:320px;
+
+}
+
+.filter-bar select{
+
+    width:220px;
+
+}
+
+.export-btn{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    padding:13px 22px;
+
+    border-radius:14px;
+
+    text-decoration:none;
+
+    color:white;
+
+    font-weight:600;
+
+    background:
+    linear-gradient(90deg,#16a34a,#22c55e);
+
+    transition:0.3s;
+
+}
+
+.export-btn:hover{
+
+    transform:translateY(-3px);
+
+}
+
 /* TABLE */
 
 table{
@@ -502,30 +565,18 @@ input::placeholder{
 
         <div class="table-box">
 
-    <form method="GET" style="margin-bottom:20px;">
+    <div class="filter-bar">
+
+<form method="GET" style="display:flex; gap:15px; flex-wrap:wrap; width:100%;">
 
     <input
         type="text"
         name="search"
         placeholder="Search customer or phone..."
         value="{{ request('search') }}"
-        style="
-            width:300px;
-            padding:12px;
-            border:1px solid #d1d5db;
-            border-radius:8px;
-        "
     >
 
-    <select
-        name="status"
-        style="
-            padding:12px;
-            border:1px solid #d1d5db;
-            border-radius:8px;
-            margin-left:10px;
-        "
-    >
+    <select name="status">
 
         <option value="">All Status</option>
 
@@ -541,36 +592,22 @@ input::placeholder{
 
     </select>
 
-    <button
-        type="submit"
-        style="
-            padding:12px 18px;
-            background:#2563eb;
-            color:#fff;
-            border:none;
-            border-radius:8px;
-            cursor:pointer;
-        "
-    >
+    <button type="submit" class="btn">
+
         Search
+
     </button>
+
+    <a href="/export-leads"
+       class="export-btn">
+
+        Export CSV
+
+    </a>
 
 </form>
 
-<a href="/export-leads"
-   style="
-        display:inline-block;
-        margin-bottom:20px;
-        padding:12px 18px;
-        background:#16a34a;
-        color:white;
-        text-decoration:none;
-        border-radius:8px;
-   ">
-
-    Export CSV
-
-</a>
+</div>
 
     <h2>Recent Leads</h2>
 
