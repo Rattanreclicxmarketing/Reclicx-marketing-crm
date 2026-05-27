@@ -179,7 +179,13 @@
 </head>
 <body>
 
-<div class="menu">
+<div class="sidebar">
+
+    <div class="logo">
+        AGENT PANEL
+    </div>
+
+    <div class="menu">
 
     <a href="/public/agent">
         Dashboard

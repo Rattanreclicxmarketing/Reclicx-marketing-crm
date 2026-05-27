@@ -189,29 +189,29 @@
         AGENT PANEL
     </div>
 
-    <div class="menu">
+   <div class="menu">
 
-    <a href="/agent">
+    <a href="/public/agent">
         Dashboard
     </a>
 
-    <a href="/agent/leads">
+    <a href="/public/agent/leads">
         Leads
     </a>
 
-    <a href="/agent/verification">
+    <a href="/public/agent/verification">
         Verification
     </a>
 
-    <a href="/agent/dispatch">
+    <a href="/public/agent/dispatch">
         Dispatch
     </a>
 
-    <a href="/agent/hold">
+    <a href="/public/agent/hold">
         Hold
     </a>
 
-    <a href="/agent/ndr">
+    <a href="/public/agent/ndr">
         NDR
     </a>
 
