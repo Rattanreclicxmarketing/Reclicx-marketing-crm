@@ -291,4 +291,9 @@ Route::get('/landing', function () {
 Route::post('/landing-lead',
     [LeadController::class,'landingLead']);
 
+
+Route::get('/test-page', function () {
+    return "WORKING";
+});
+
 require __DIR__.'/auth.php';
