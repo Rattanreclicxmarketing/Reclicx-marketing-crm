@@ -27,7 +27,7 @@ body{
 /* SIDEBAR */
 
 .sidebar{
-    width:270px;
+    width:240px;
     height:100vh;
     background:rgba(15,23,42,0.95);
     backdrop-filter:blur(20px);
@@ -76,7 +76,7 @@ body{
 /* MAIN */
 
 .main{
-    margin-left:270px;
+    margin-left:240px;
     width:100%;
     padding:35px;
 }
@@ -91,7 +91,7 @@ body{
 }
 
 .topbar h1{
-    font-size:42px;
+    font-size:34px;
     font-weight:800;
     background:linear-gradient(90deg,#fff,#93c5fd);
     -webkit-background-clip:text;
@@ -129,7 +129,7 @@ button:hover{
 
 .cards{
     display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+    grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
     gap:25px;
 }
 
@@ -139,8 +139,8 @@ button:hover{
     background:rgba(255,255,255,0.06);
     border:1px solid rgba(255,255,255,0.08);
     backdrop-filter:blur(18px);
-    padding:28px;
-    border-radius:24px;
+    padding:22px;
+    border-radius:20px;
     transition:0.4s;
     box-shadow:0 10px 35px rgba(0,0,0,0.25);
 }
@@ -169,7 +169,7 @@ button:hover{
 }
 
 .card h2{
-    font-size:42px;
+    font-size:34px;
     margin-top:14px;
     color:#fff;
     font-weight:700;
