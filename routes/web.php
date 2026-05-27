@@ -132,9 +132,21 @@ $dispatch = \App\Models\Lead::where('agent_id',auth()->id())
 
 Route::get('/agent/leads', function () {
 
-    return "AGENT LEADS WORKING";
+    $leads = \App\Models\Lead::where('agent_id',auth()->id())
 
-})->middleware(['auth']);
+        ->whereIn('status',[
+            'order_placed',
+            'ringing',
+            'call_back'
+        ])
+
+        ->latest()
+
+        ->get();
+
+    return view('agent-leads', compact('leads'));
+
+})->middleware(['auth','role:agent']);
 
 Route::get('/agent/verification', function () {
 
