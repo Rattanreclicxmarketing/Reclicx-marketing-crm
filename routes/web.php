@@ -296,4 +296,7 @@ Route::get('/test-page', function () {
     return "WORKING";
 });
 
+Route::post('/dispatch/{id}',
+    [LeadController::class,'dispatchLead']);
+
 require __DIR__.'/auth.php';

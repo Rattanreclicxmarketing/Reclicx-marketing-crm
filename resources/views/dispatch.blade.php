@@ -85,6 +85,12 @@
 
             <th>Agent</th>
 
+            <th>Courier</th>
+
+<th>Tracking</th>
+
+<th>AWB</th>
+
             <th>Actions</th>
 
         </tr>
@@ -136,15 +142,79 @@
             </td>
 
             <td>
+    {{ $lead->courier_name ?? '-' }}
+</td>
 
-                <a href="{{ route('leads.show',$lead->id) }}"
-                    class="btn">
+<td>
+    {{ $lead->tracking_id ?? '-' }}
+</td>
 
-                    View
+<td>
+    {{ $lead->awb_number ?? '-' }}
+</td>
 
-                </a>
+            <td>
 
-            </td>
+                <td>
+
+    <a href="{{ route('leads.show',$lead->id) }}"
+        class="btn">
+
+        View
+
+    </a>
+
+    <br><br>
+
+    <form method="POST"
+          action="/dispatch/{{ $lead->id }}">
+
+        @csrf
+
+        <select name="courier_name">
+
+    <option value="Blue Dart">Blue Dart</option>
+
+    <option value="Delhivery">Delhivery</option>
+
+    <option value="Ecom Express">Ecom Express</option>
+
+    <option value="Amazon Shipping">Amazon Shipping</option>
+
+    <option value="Xpressbees">Xpressbees</option>
+
+    <option value="Shadowfax">Shadowfax</option>
+
+    <option value="Ekart">Ekart</option>
+
+    <option value="DTDC">DTDC</option>
+
+</select>
+
+        <br><br>
+
+        <input type="text"
+               name="tracking_id"
+               placeholder="Tracking Number">
+
+        <br><br>
+
+        <input type="text"
+               name="awb_number"
+               placeholder="AWB Number">
+
+        <br><br>
+
+        <button type="submit"
+                class="btn">
+
+            Dispatch
+
+        </button>
+
+    </form>
+
+</td>
 
         </tr>
 
