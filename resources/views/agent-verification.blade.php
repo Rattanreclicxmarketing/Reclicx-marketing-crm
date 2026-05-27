@@ -352,6 +352,12 @@
 
                 <th>Amount</th>
 
+                <th>Courier</th>
+
+<th>Tracking</th>
+
+<th>AWB</th>
+
                 <th>Action</th>
 
             </tr>
@@ -381,6 +387,18 @@
                 <td>₹{{ $lead->amount }}</td>
 
                 <td>
+
+                <td>
+    {{ $lead->courier_name ?? '-' }}
+</td>
+
+<td>
+    {{ $lead->tracking_id ?? '-' }}
+</td>
+
+<td>
+    {{ $lead->awb_number ?? '-' }}
+</td>
 
                     <a href="{{ route('leads.edit',$lead->id) }}"
                         class="btn">

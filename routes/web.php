@@ -299,4 +299,5 @@ Route::get('/test-page', function () {
 Route::post('/dispatch/{id}',
     [LeadController::class,'dispatchLead']);
 
+require __DIR__.'/testapi.php';
 require __DIR__.'/auth.php';

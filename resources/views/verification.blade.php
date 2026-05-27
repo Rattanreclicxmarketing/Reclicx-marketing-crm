@@ -85,6 +85,12 @@
 
             <th>Agent</th>
 
+            <th>Courier</th>
+
+<th>Tracking</th>
+
+<th>AWB</th>
+
             <th>Actions</th>
 
         </tr>
@@ -134,6 +140,18 @@
             <td>
                 {{ $lead->agent->name ?? 'Not Assigned' }}
             </td>
+
+            <td>
+    {{ $lead->courier_name ?? '-' }}
+</td>
+
+<td>
+    {{ $lead->tracking_id ?? '-' }}
+</td>
+
+<td>
+    {{ $lead->awb_number ?? '-' }}
+</td>
 
             <td>
 
