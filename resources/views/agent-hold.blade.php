@@ -6,179 +6,519 @@
 
     <style>
 
-        *{
-            margin:0;
-            padding:0;
-            box-sizing:border-box;
-            font-family:Arial;
-        }
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
 
-        body{
-            background:#f3f4f6;
-            display:flex;
-        }
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
 
-        .sidebar{
-            width:260px;
-            height:100vh;
-            background:#111827;
-            color:#fff;
-            padding:30px 20px;
-            position:fixed;
-        }
+body{
+    background:
+    linear-gradient(
+    135deg,
+    #020617,
+    #0f172a,
+    #111827,
+    #1e293b
+    );
 
-        .logo{
-            font-size:24px;
-            font-weight:bold;
-            margin-bottom:40px;
-        }
+    color:#fff;
+    display:flex;
+    min-height:100vh;
+    overflow-x:hidden;
+}
 
-        .menu a{
-            display:block;
-            color:#d1d5db;
-            text-decoration:none;
-            padding:14px 15px;
-            margin-bottom:10px;
-            border-radius:8px;
-            transition:0.3s;
-        }
+/* SIDEBAR */
 
-        .menu a:hover{
-            background:#2563eb;
-            color:#fff;
-        }
+.sidebar{
+    width:210px;
+    height:100vh;
+    background:
+    rgba(15,23,42,0.95);
 
-        .main{
-            margin-left:260px;
-            width:100%;
-            padding:30px;
-        }
+    backdrop-filter:blur(20px);
 
-        .topbar{
-            display:flex;
-            justify-content:space-between;
-            align-items:center;
-            margin-bottom:30px;
-        }
+    border-right:
+    1px solid rgba(255,255,255,0.08);
 
-        .cards{
-            display:grid;
-            grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-            gap:20px;
-        }
+    position:fixed;
 
-        .card{
-            background:#fff;
-            padding:25px;
-            border-radius:12px;
-            box-shadow:0 2px 10px rgba(0,0,0,0.08);
-        }
+    padding:30px 20px;
 
-        .card h2{
-            font-size:30px;
-            margin-top:10px;
-            color:#111827;
-        }
+    overflow-y:auto;
 
-        .card p{
-            color:#6b7280;
-        }
+    box-shadow:
+    0 0 40px rgba(0,0,0,0.5);
+}
 
-        .table-box{
-            background:#fff;
-            margin-top:30px;
-            padding:20px;
-            border-radius:12px;
-            box-shadow:0 2px 10px rgba(0,0,0,0.08);
-        }
+.logo{
+    font-size:18px;
+    font-weight:800;
+    margin-bottom:45px;
 
-        table{
-            width:100%;
-            border-collapse:collapse;
-            margin-top:20px;
-        }
+    background:
+    linear-gradient(90deg,#60a5fa,#a855f7);
 
-        table th,
-        table td{
-            padding:14px;
-            border-bottom:1px solid #e5e7eb;
-            text-align:left;
-        }
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
 
-        table th{
-            background:#f9fafb;
-        }
+/* MENU */
 
-        .status{
-            padding:7px 14px;
-            border-radius:30px;
-            color:#fff;
-            font-size:12px;
-            font-weight:bold;
-            display:inline-block;
-            text-transform:capitalize;
-        }
+.menu a{
 
-        .assigned_to_agent{
-            background:#2563eb;
-        }
+    display:flex;
+    align-items:center;
 
-        .order_placed{
-    background:#2563eb;
+    gap:12px;
+
+    text-decoration:none;
+
+    color:#cbd5e1;
+
+    padding:15px 14px;
+
+    margin-bottom:15px;
+
+    border-radius:16px;
+
+    transition:0.35s;
+
+    background:
+    rgba(255,255,255,0.03);
+
+    font-weight:500;
+}
+
+.menu a:hover{
+
+    transform:translateX(6px);
+
+    background:
+    linear-gradient(90deg,#2563eb,#7c3aed);
+
+    color:#fff;
+
+    box-shadow:
+    0 12px 30px rgba(37,99,235,0.35);
+
+}
+
+.menu a.active{
+
+    background:
+    linear-gradient(90deg,#2563eb,#7c3aed);
+
+    color:#fff;
+
+    box-shadow:
+    0 10px 25px rgba(37,99,235,0.35);
+
+}
+
+/* MAIN */
+
+.main{
+    margin-left:210px;
+    width:100%;
+    padding:35px;
+}
+
+/* TOPBAR */
+
+.topbar{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:35px;
+
+    padding:15px 20px;
+
+    border-radius:22px;
+
+    background:
+    rgba(255,255,255,0.03);
+
+    backdrop-filter:blur(18px);
+
+    border:
+    1px solid rgba(255,255,255,0.06);
+}
+
+.topbar h1{
+
+    font-size:28px;
+
+    font-weight:800;
+
+    background:
+    linear-gradient(90deg,#ffffff,#60a5fa,#a855f7);
+
+    -webkit-background-clip:text;
+
+    -webkit-text-fill-color:transparent;
+
+}
+
+.user-box{
+
+    background:
+    rgba(255,255,255,0.05);
+
+    padding:15px 20px;
+
+    border-radius:18px;
+
+    border:
+    1px solid rgba(255,255,255,0.08);
+
+    text-align:center;
+
+}
+
+/* CARDS */
+
+.cards{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(auto-fit,minmax(200px,1fr));
+
+    gap:25px;
+}
+
+.card{
+
+    background:
+    rgba(255,255,255,0.05);
+
+    border:
+    1px solid rgba(255,255,255,0.08);
+
+    backdrop-filter:blur(18px);
+
+    padding:18px;
+
+    border-radius:22px;
+
+    transition:0.4s;
+
+    box-shadow:
+    0 10px 35px rgba(0,0,0,0.25);
+
+    position:relative;
+
+    overflow:hidden;
+
+}
+
+.card:hover{
+    transform:translateY(-6px);
+}
+
+.card::before{
+
+    content:'';
+
+    position:absolute;
+
+    top:0;
+    left:0;
+
+    width:100%;
+    height:3px;
+
+    background:
+    linear-gradient(90deg,#2563eb,#7c3aed);
+
+}
+
+.card p{
+
+    color:#94a3b8;
+
+    font-size:15px;
+}
+
+.card h2{
+
+    font-size:22px;
+
+    margin-top:12px;
+
+    color:#fff;
+
+    font-weight:700;
+}
+
+/* TABLE BOX */
+
+.table-box{
+
+    margin-top:35px;
+
+    background:
+    rgba(255,255,255,0.05);
+
+    border-radius:24px;
+
+    padding:28px;
+
+    border:
+    1px solid rgba(255,255,255,0.08);
+
+    backdrop-filter:blur(20px);
+
+    overflow:auto;
+
+    box-shadow:
+    0 15px 40px rgba(0,0,0,0.25);
+
+}
+
+.table-box h2{
+
+    margin-bottom:25px;
+
+    font-size:28px;
+
+    font-weight:700;
+}
+
+/* TABLE */
+
+table{
+
+    width:100%;
+
+    border-collapse:collapse;
+}
+
+table th{
+
+    background:
+    rgba(255,255,255,0.08);
+
+    color:#fff;
+
+    padding:18px;
+
+    font-size:13px;
+
+    text-transform:uppercase;
+}
+
+table td{
+
+    padding:18px;
+
+    color:#e2e8f0;
+
+    border-bottom:
+    1px solid rgba(255,255,255,0.05);
+}
+
+table tr:hover{
+
+    background:
+    rgba(59,130,246,0.08);
+
+    transition:0.3s;
+}
+
+/* STATUS */
+
+.status{
+
+    padding:8px 16px;
+
+    border-radius:50px;
+
+    color:#fff;
+
+    font-size:12px;
+
+    font-weight:700;
+
+    display:inline-block;
+
+    text-transform:uppercase;
+}
+
+.order_placed{
+    background:linear-gradient(90deg,#2563eb,#60a5fa);
 }
 
 .ringing{
-    background:#0ea5e9;
+    background:linear-gradient(90deg,#0891b2,#06b6d4);
 }
 
 .call_back{
-    background:#f59e0b;
+    background:linear-gradient(90deg,#f59e0b,#facc15);
+    color:#111827;
 }
 
-        .verified{
-            background:#16a34a;
-        }
-
-        .cancelled{
-            background:#dc2626;
-        }
-
-        .hold{
-            background:#f59e0b;
-        }
-
-        .dispatch{
-            background:#0891b2;
-        }
-
-        .delivered{
-    background:#16a34a;
+.verified{
+    background:linear-gradient(90deg,#16a34a,#22c55e);
 }
 
-        .rto{
-            background:#ea580c;
-        }
+.cancelled{
+    background:linear-gradient(90deg,#dc2626,#ef4444);
+}
 
-        .btn{
-            display:inline-block;
-            background:#2563eb;
-            color:#fff;
-            padding:8px 14px;
-            text-decoration:none;
-            border-radius:6px;
-            border:none;
-            cursor:pointer;
-        }
+.hold{
+    background:linear-gradient(90deg,#f59e0b,#facc15);
+    color:#111827;
+}
 
-        select{
-            padding:8px;
-            border:1px solid #ddd;
-            border-radius:6px;
-            width:100%;
-            margin-top:8px;
-        }
+.dispatch{
+    background:linear-gradient(90deg,#7c3aed,#a855f7);
+}
 
-    </style>
+.rto{
+    background:linear-gradient(90deg,#ea580c,#fb923c);
+}
+
+/* BUTTONS */
+
+.btn,
+button{
+
+    background:
+    linear-gradient(90deg,#2563eb,#7c3aed);
+
+    color:#fff;
+
+    border:none;
+
+    padding:9px 16px;
+
+    border-radius:14px;
+
+    cursor:pointer;
+
+    font-weight:600;
+
+    transition:0.35s;
+
+    box-shadow:
+    0 10px 25px rgba(37,99,235,0.25);
+}
+
+.btn:hover,
+button:hover{
+
+    transform:translateY(-3px);
+
+    box-shadow:
+    0 18px 35px rgba(124,58,237,0.4);
+}
+
+/* INPUTS */
+
+input,
+select{
+
+    width:100%;
+
+    padding:12px 14px;
+
+    border-radius:12px;
+
+    border:
+    1px solid rgba(255,255,255,0.08);
+
+    background:
+    rgba(255,255,255,0.05);
+
+    color:white;
+
+    outline:none;
+}
+
+select option{
+    background:#111827;
+}
+
+input::placeholder{
+    color:#94a3b8;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:991px){
+
+    .sidebar{
+        width:100%;
+        height:auto;
+        position:relative;
+    }
+
+    .main{
+        margin-left:0;
+    }
+
+    body{
+        flex-direction:column;
+    }
+
+    table{
+        min-width:1300px;
+    }
+
+}
+
+/* FILTER BAR */
+
+.filter-bar{
+
+    display:flex;
+
+    gap:15px;
+
+    margin-bottom:25px;
+
+    flex-wrap:wrap;
+
+}
+
+.filter-bar input{
+    width:220px;
+}
+
+.filter-bar select{
+    width:180px;
+}
+
+.update-btn{
+
+    margin-top:8px;
+
+    width:100%;
+
+}
+
+.filter-bar button{
+
+    height:48px;
+
+}
+
+.action-form{
+
+    margin-top:10px;
+
+}
+
+</style>
 
 </head>
 <body>
@@ -186,7 +526,7 @@
 <div class="sidebar">
 
     <div class="logo">
-        AGENT PANEL
+        RECLICX CRM
     </div>
 
     <div class="menu">
@@ -227,9 +567,9 @@
 
     <div class="topbar">
 
-        <h2>Hold Leads</h2>
+        <h1>Hold Leads</h1>
 
-        <div>
+       <div class="user-box">
 
             <h3>
                 Welcome Agent
@@ -242,19 +582,11 @@
 
                 @csrf
 
-                <button type="submit"
-                    style="
-                        background:red;
-                        color:white;
-                        border:none;
-                        padding:10px 15px;
-                        border-radius:6px;
-                        cursor:pointer;
-                    ">
+                <button type="submit" class="btn update-btn">
 
-                    Logout
+    Logout
 
-                </button>
+</button>
 
             </form>
 
@@ -265,31 +597,16 @@
     <div class="table-box">
     <form method="GET">
 
-    <div style="
-        display:flex;
-        gap:10px;
-        margin-bottom:20px;
-    ">
+    <div class="filter-bar">
 
         <input
             type="text"
             name="search"
             placeholder="Search customer or phone"
             value="{{ request('search') }}"
-            style="
-                padding:10px;
-                width:220px;
-                border:1px solid #ddd;
-                border-radius:6px;
-            "
         >
 <select
     name="status"
-    style="
-        width:180px;
-        border:1px solid #ddd;
-        border-radius:6px;
-    "
 >
 
 <option value="">
@@ -310,11 +627,6 @@
             type="date"
             name="date"
             value="{{ request('date') }}"
-            style="
-                padding:10px;
-                border:1px solid #ddd;
-                border-radius:6px;
-            "
         >
 
         <button
@@ -387,7 +699,7 @@
                     <form
                         action="{{ route('leads.updateStatus',$lead->id) }}"
                         method="POST"
-                        style="margin-top:10px;">
+                    >
 
                         @csrf
 
@@ -409,7 +721,7 @@
                         <button
                             type="submit"
                             class="btn"
-                            style="margin-top:8px; width:100%;">
+                        >
 
                             Update
 
