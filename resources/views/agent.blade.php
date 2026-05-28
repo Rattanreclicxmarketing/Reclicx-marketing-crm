@@ -34,7 +34,7 @@ body{
 /* SIDEBAR */
 
 .sidebar{
-    width:240px;
+    width:210px;
     height:100vh;
     background:
     rgba(15,23,42,0.95);
@@ -55,7 +55,7 @@ body{
 }
 
 .logo{
-    font-size:28px;
+    font-size:18px;
     font-weight:800;
     margin-bottom:45px;
 
@@ -79,7 +79,7 @@ body{
 
     color:#cbd5e1;
 
-    padding:15px 18px;
+    padding:15px 14px;
 
     margin-bottom:15px;
 
@@ -107,10 +107,22 @@ body{
 
 }
 
+.menu a.active{
+
+    background:
+    linear-gradient(90deg,#2563eb,#7c3aed);
+
+    color:#fff;
+
+    box-shadow:
+    0 10px 25px rgba(37,99,235,0.35);
+
+}
+
 /* MAIN */
 
 .main{
-    margin-left:240px;
+    margin-left:210px;
     width:100%;
     padding:35px;
 }
@@ -127,7 +139,7 @@ body{
 
     margin-bottom:35px;
 
-    padding:20px 25px;
+    padding:15px 20px;
 
     border-radius:22px;
 
@@ -142,16 +154,33 @@ body{
 
 .topbar h1{
 
-    font-size:34px;
+    font-size:28px;
 
     font-weight:800;
 
     background:
-    linear-gradient(90deg,#fff,#93c5fd);
+    linear-gradient(90deg,#ffffff,#60a5fa,#a855f7);
 
     -webkit-background-clip:text;
 
     -webkit-text-fill-color:transparent;
+
+}
+
+.user-box{
+
+    background:
+    rgba(255,255,255,0.05);
+
+    padding:15px 20px;
+
+    border-radius:18px;
+
+    border:
+    1px solid rgba(255,255,255,0.08);
+
+    text-align:center;
+
 }
 
 /* CARDS */
@@ -176,7 +205,7 @@ body{
 
     backdrop-filter:blur(18px);
 
-    padding:24px;
+    padding:18px;
 
     border-radius:22px;
 
@@ -185,10 +214,31 @@ body{
     box-shadow:
     0 10px 35px rgba(0,0,0,0.25);
 
+    position:relative;
+
+    overflow:hidden;
+
 }
 
 .card:hover{
     transform:translateY(-6px);
+}
+
+.card::before{
+
+    content:'';
+
+    position:absolute;
+
+    top:0;
+    left:0;
+
+    width:100%;
+    height:3px;
+
+    background:
+    linear-gradient(90deg,#2563eb,#7c3aed);
+
 }
 
 .card p{
@@ -200,7 +250,7 @@ body{
 
 .card h2{
 
-    font-size:34px;
+    font-size:22px;
 
     margin-top:12px;
 
@@ -279,7 +329,9 @@ table td{
 table tr:hover{
 
     background:
-    rgba(255,255,255,0.04);
+    rgba(59,130,246,0.08);
+
+    transition:0.3s;
 }
 
 /* STATUS */
@@ -347,7 +399,7 @@ button{
 
     border:none;
 
-    padding:12px 22px;
+    padding:9px 16px;
 
     border-radius:14px;
 
@@ -424,6 +476,28 @@ input::placeholder{
 
 }
 
+/* FILTER BAR */
+
+.filter-bar{
+
+    display:flex;
+
+    gap:15px;
+
+    margin-bottom:25px;
+
+    flex-wrap:wrap;
+
+}
+
+.filter-bar input{
+    width:220px;
+}
+
+.filter-bar select{
+    width:180px;
+}
+
 </style>
 
 </head>
@@ -432,7 +506,7 @@ input::placeholder{
 <div class="sidebar">
 
     <div class="logo">
-        AGENT PANEL
+        RECLICX CRM
     </div>
 
     <div class="menu">
@@ -475,11 +549,11 @@ input::placeholder{
 
         <h1>Agent Dashboard</h1>
 
-        <div>
+        <div class="user-box">
 
-            <h3>
-                Welcome Agent
-            </h3>
+    <h3 style="margin-bottom:15px;">
+        👋 Welcome Agent
+    </h3>
 
             <br>
 
@@ -488,15 +562,7 @@ input::placeholder{
 
                 @csrf
 
-                <button type="submit"
-                    style="
-                        background:red;
-                        color:white;
-                        border:none;
-                        padding:10px 15px;
-                        border-radius:6px;
-                        cursor:pointer;
-                    ">
+                <button type="submit" class="btn">
 
                     Logout
 
@@ -587,32 +653,18 @@ input::placeholder{
     <div class="table-box">
     <form method="GET">
 
-    <div style="
-        display:flex;
-        gap:10px;
-        margin-bottom:20px;
-    ">
+    <div class="filter-bar">
 
         <input
             type="text"
             name="search"
             placeholder="Search customer or phone"
             value="{{ request('search') }}"
-            style="
-                padding:10px;
-                width:220px;
-                border:1px solid #ddd;
-                border-radius:6px;
-            "
         >
 
         <select
             name="status"
-            style="
-                width:180px;
-                border:1px solid #ddd;
-                border-radius:6px;
-            "
+            
         >
 
             <option value="">
@@ -661,11 +713,6 @@ input::placeholder{
             type="date"
             name="date"
             value="{{ request('date') }}"
-            style="
-                padding:10px;
-                border:1px solid #ddd;
-                border-radius:6px;
-            "
         >
 
         <button
@@ -733,8 +780,6 @@ input::placeholder{
                 <td>₹{{ $lead->amount }}</td>
 
                 <td>
-
-                <td>
     {{ $lead->courier_name ?? '-' }}
 </td>
 
@@ -752,6 +797,8 @@ input::placeholder{
                         Edit
 
                     </a>
+
+</td>
 
                     <form
                         action="{{ route('leads.updateStatus',$lead->id) }}"
