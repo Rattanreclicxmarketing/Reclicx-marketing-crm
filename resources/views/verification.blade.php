@@ -203,10 +203,81 @@ td{
 
 }
 
+/* SIDEBAR */
+
+.sidebar{
+    width:240px;
+    height:100vh;
+    background:rgba(15,23,42,0.95);
+    backdrop-filter:blur(20px);
+    position:fixed;
+    left:0;
+    top:0;
+    padding:30px 20px;
+    overflow-y:auto;
+    border-right:1px solid rgba(255,255,255,0.08);
+}
+
+.logo{
+    font-size:28px;
+    font-weight:800;
+    margin-bottom:30px;
+    color:#fff;
+}
+
+.menu a{
+    display:block;
+    color:#cbd5e1;
+    text-decoration:none;
+    padding:14px;
+    margin-bottom:10px;
+    border-radius:12px;
+    background:rgba(255,255,255,0.05);
+    transition:0.3s;
+}
+
+.menu a:hover{
+    background:linear-gradient(90deg,#2563eb,#7c3aed);
+    color:white;
+}
+
+.main{
+    margin-left:260px;
+}
+
 </style>
 
 </head>
 <body>
+
+<div class="sidebar">
+
+    <div class="logo">
+        RECLICX CRM
+    </div>
+
+    <div class="menu">
+
+        <a href="/admin">📊 Dashboard</a>
+
+        <a href="{{ route('leads.index') }}">📞 Leads</a>
+
+        <a href="{{ route('users.create') }}">👨‍💼 Team Leaders</a>
+
+        <a href="{{ route('users.index') }}">👥 Users</a>
+
+        <a href="{{ route('verification') }}">✅ Verification</a>
+
+        <a href="{{ route('dispatch') }}">🚚 Dispatch</a>
+
+        <a href="{{ route('ndr') }}">📦 NDR</a>
+
+    </div>
+
+</div>
+
+<div class="main">
+    
 
 <div class="container">
 
@@ -318,6 +389,8 @@ td{
         @endforeach
 
     </table>
+
+</div>
 
 </div>
 
