@@ -196,4 +196,25 @@ public function landingLead(Request $request)
     ]);
 }
 
+public function dispatchLead(Request $request,$id)
+{
+    $lead = Lead::findOrFail($id);
+
+    $lead->courier_name = $request->courier_name;
+
+    $lead->tracking_id = $request->tracking_id;
+
+    $lead->awb_number = $request->awb_number;
+
+    $lead->shipping_status = 'dispatch';
+
+    $lead->dispatch_date = now();
+
+    $lead->status = 'dispatch';
+
+    $lead->save();
+
+    return back()->with('success','Lead Dispatched');
+}
+
 }

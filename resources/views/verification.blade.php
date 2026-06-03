@@ -243,6 +243,19 @@ td{
 
 .main{
     margin-left:260px;
+    padding:35px;
+}
+
+.topbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:30px;
+}
+
+.topbar h1{
+    font-size:34px;
+    font-weight:800;
 }
 
 </style>
@@ -277,6 +290,16 @@ td{
 </div>
 
 <div class="main">
+
+<div class="topbar">
+
+    <h1>Verification Orders</h1>
+
+    <div>
+        <h3>Welcome Admin</h3>
+    </div>
+
+</div>
     
 
 <div class="container">
