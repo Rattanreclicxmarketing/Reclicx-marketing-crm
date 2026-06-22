@@ -78,25 +78,15 @@
 
         <tr>
 
-    <th>Date</th>
-
-    <th>Name</th>
-
-    <th>Phone</th>
-
-    <th>Address</th>
-
-    <th>Product</th>
-
-    <th>Price</th>
-
-    <th>Status</th>
-
-    <th>Team Leader</th>
-
-    <th>Agent</th>
-
-    <th>Actions</th>
+    <th>Lead ID</th>
+<th>Date</th>
+<th>Name</th>
+<th>Phone</th>
+<th>Product</th>
+<th>Amount</th>
+<th>Team Leader</th>
+<th>Status</th>
+<th>Actions</th>
 
 </tr>
 
@@ -204,9 +194,6 @@
         {{ $lead->teamLeader->name ?? 'Not Assigned' }}
     </td>
 
-    <td>
-       {{ $lead->agent->name ?? 'Not Assigned' }}
-    </td>
 <td>
 
     <a href="{{ route('leads.show',$lead->id) }}"

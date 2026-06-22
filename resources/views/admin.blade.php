@@ -1,667 +1,981 @@
-<!DOCTYPE html>
-<html>
-<head>
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Admin Dashboard</title>
+    <title>RECLICX CRM</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
     <style>
 
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
-
-*{
+    *{
     margin:0;
     padding:0;
     box-sizing:border-box;
     font-family:'Poppins',sans-serif;
-}
-
-body{
-    background:
-    radial-gradient(circle at top left,#1e293b,#020617 60%);
-    color:#fff;
-    display:flex;
-    min-height:100vh;
-    overflow-x:hidden;
-}
-
-/* SIDEBAR */
-
-.sidebar{
-    width:240px;
-    height:100vh;
-    background:rgba(15,23,42,0.95);
-    backdrop-filter:blur(20px);
-    border-right:1px solid rgba(255,255,255,0.08);
-    position:fixed;
-    padding:30px 20px;
-    overflow-y:auto;
-    box-shadow:0 0 40px rgba(0,0,0,0.5);
-}
-
-.logo{
-    font-size:30px;
-    font-weight:800;
-    margin-bottom:45px;
-    letter-spacing:1px;
-    background:linear-gradient(90deg,#60a5fa,#a855f7);
-    -webkit-background-clip:text;
-    -webkit-text-fill-color:transparent;
-}
-
-/* MENU */
-
-.menu a{
-    display:flex;
-    align-items:center;
-    gap:12px;
-    text-decoration:none;
-    color:#cbd5e1;
-    padding:15px 18px;
-    margin-bottom:15px;
-    border-radius:16px;
-    transition:0.35s;
-    background:rgba(255,255,255,0.03);
-    border:1px solid transparent;
-    font-weight:500;
-}
-
-.menu a:hover{
-    transform:translateX(6px);
-    background:linear-gradient(90deg,#2563eb,#7c3aed);
-    color:#fff;
-    border:1px solid rgba(255,255,255,0.1);
-    box-shadow:0 12px 30px rgba(37,99,235,0.35);
-}
-
-/* MAIN */
-
-.main{
-    margin-left:240px;
-    width:100%;
-    padding:35px;
-}
-
-/* TOPBAR */
-
-.topbar{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin-bottom:35px;
-}
-
-.topbar h1{
-    font-size:34px;
-    font-weight:800;
-    background:linear-gradient(90deg,#fff,#93c5fd);
-    -webkit-background-clip:text;
-    -webkit-text-fill-color:transparent;
-}
-
-.topbar-right{
-    display:flex;
-    align-items:center;
-    gap:15px;
-}
-
-/* BUTTONS */
-
-.btn,
-button{
-    background:linear-gradient(90deg,#2563eb,#7c3aed);
-    color:#fff;
-    border:none;
-    padding:13px 24px;
-    border-radius:14px;
-    cursor:pointer;
-    font-weight:600;
-    transition:0.35s;
-    box-shadow:0 10px 25px rgba(37,99,235,0.25);
-}
-
-.btn:hover,
-button:hover{
-    transform:translateY(-3px) scale(1.03);
-    box-shadow:0 18px 35px rgba(124,58,237,0.4);
-}
-
-/* CARDS */
-
-.cards{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
-    gap:25px;
-}
-
-.card{
-    position:relative;
-    overflow:hidden;
-    background:rgba(255,255,255,0.06);
-    border:1px solid rgba(255,255,255,0.08);
-    backdrop-filter:blur(18px);
-    padding:22px;
-    border-radius:20px;
-    transition:0.4s;
-    box-shadow:0 10px 35px rgba(0,0,0,0.25);
-}
-
-.card::before{
-    content:'';
-    position:absolute;
-    width:120px;
-    height:120px;
-    background:rgba(255,255,255,0.08);
-    border-radius:50%;
-    top:-40px;
-    right:-40px;
-}
-
-.card:hover{
-    transform:translateY(-8px);
-    border:1px solid rgba(96,165,250,0.4);
-    box-shadow:0 20px 40px rgba(37,99,235,0.3);
-}
-
-.card p{
-    color:#94a3b8;
-    font-size:15px;
-    font-weight:500;
-}
-
-.card h2{
-    font-size:34px;
-    margin-top:14px;
-    color:#fff;
-    font-weight:700;
-}
-
-/* TABLE BOX */
-
-.table-box{
-    margin-top:35px;
-    background:rgba(255,255,255,0.05);
-    border-radius:24px;
-    padding:28px;
-    border:1px solid rgba(255,255,255,0.08);
-    backdrop-filter:blur(20px);
-    overflow:auto;
-    box-shadow:0 15px 40px rgba(0,0,0,0.25);
-}
-
-.table-box h2{
-    margin-bottom:20px;
-    font-size:28px;
-    font-weight:700;
-}
-
-/* FILTER BAR */
-
-.filter-bar{
-
-    margin-bottom:30px;
-
-}
-
-.filter-bar form{
-
-    display:flex;
-
-    gap:15px;
-
-    align-items:center;
-
-    flex-wrap:wrap;
-
-}
-
-.filter-bar input{
-
-    width:320px;
-
-}
-
-.filter-bar select{
-
-    width:220px;
-
-}
-
-.export-btn{
-
-    display:inline-flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    padding:13px 22px;
-
-    border-radius:14px;
-
-    text-decoration:none;
-
-    color:white;
-
-    font-weight:600;
-
-    background:
-    linear-gradient(90deg,#16a34a,#22c55e);
-
-    transition:0.3s;
-
-}
-
-.export-btn:hover{
-
-    transform:translateY(-3px);
-
-}
-
-/* TABLE */
-
-table{
-    width:100%;
-    border-collapse:collapse;
-    overflow:hidden;
-}
-
-table th{
-    background:rgba(255,255,255,0.08);
-    color:#fff;
-    padding:18px;
-    font-size:14px;
-    text-transform:uppercase;
-    letter-spacing:1px;
-    border-bottom:1px solid rgba(255,255,255,0.08);
-}
-
-table td{
-    padding:18px;
-    color:#e2e8f0;
-    border-bottom:1px solid rgba(255,255,255,0.05);
-    transition:0.3s;
-}
-
-table tr{
-    transition:0.3s;
-}
-
-table tr:hover{
-    background:rgba(255,255,255,0.04);
-}
-
-/* INPUTS */
-
-input,
-select{
-    width:100%;
-    padding:14px 16px;
-    background:rgba(255,255,255,0.05);
-    border:1px solid rgba(255,255,255,0.08);
-    border-radius:14px;
-    color:#fff;
-    outline:none;
-    transition:0.3s;
-}
-
-input:focus,
-select:focus{
-    border:1px solid #60a5fa;
-    box-shadow:0 0 15px rgba(96,165,250,0.3);
-}
-
-input::placeholder{
-    color:#94a3b8;
-}
-
-/* STATUS BADGES */
-
-.status{
-    padding:9px 16px;
-    border-radius:50px;
-    color:#fff;
-    font-size:12px;
-    font-weight:700;
-    display:inline-block;
-    text-transform:uppercase;
-    letter-spacing:0.5px;
-}
-
-/* STATUS COLORS */
-
-.assigned_to_agent{
-    background:linear-gradient(90deg,#2563eb,#60a5fa);
-}
-
-.order_confirmed{
-    background:linear-gradient(90deg,#7c3aed,#a855f7);
-}
-
-.delivered{
-    background:linear-gradient(90deg,#16a34a,#22c55e);
-}
-
-.cancelled{
-    background:linear-gradient(90deg,#dc2626,#ef4444);
-}
-
-.hold{
-    background:linear-gradient(90deg,#f59e0b,#facc15);
-    color:#111827;
-}
-
-.rto{
-    background:linear-gradient(90deg,#ea580c,#fb923c);
-}
-
-.dispatch{
-    background:linear-gradient(90deg,#0891b2,#06b6d4);
-}
-
-.verification_pending{
-    background:linear-gradient(90deg,#475569,#94a3b8);
-}
-
-/* SCROLLBAR */
-
-::-webkit-scrollbar{
-    width:8px;
-    height:8px;
-}
-
-::-webkit-scrollbar-thumb{
-    background:#334155;
-    border-radius:20px;
-}
-
-/* RESPONSIVE */
-
-@media(max-width:991px){
-
-    .sidebar{
-        width:100%;
-        height:auto;
-        position:relative;
-    }
-
-    .main{
-        margin-left:0;
     }
 
     body{
-        flex-direction:column;
+    background:
+    linear-gradient(135deg,#020817,#04132c,#061a3d);
+    color:#fff;
+    overflow-x:hidden;
     }
 
-    .cards{
-        grid-template-columns:1fr;
+    /* SIDEBAR */
+
+    .sidebar{
+position:fixed;
+left:0;
+top:0;
+width:280px;
+height:100vh;
+overflow-y:auto;
+overflow-x:hidden;
+
+background:
+linear-gradient(
+180deg,
+rgba(6,20,45,.98),
+rgba(2,8,23,.98)
+);
+
+border-right:1px solid rgba(255,255,255,.05);
+padding:25px;
+z-index:999;
+}
+
+    .logo-box{
+padding-bottom:25px;
+margin-bottom:25px;
+border-bottom:1px solid rgba(255,255,255,.08);
+}
+    .logo-box img{
+    width:110px;
+    margin-bottom:15px;
     }
+
+    .logo-box h2{
+    font-size:18px;
+    font-weight:800;
+    line-height:1.3;
+    }
+
+    .logo-box span{
+    color:#2563eb;
+    }
+
+    .menu{
+    margin-top:20px;
+    }
+.menu a{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    padding:16px 20px;
+    margin-bottom:12px;
+    border-radius:18px;
+    text-decoration:none;
+    color:#cbd5e1;
+    font-size:15px;
+    font-weight:600;
+    transition:.3s;
+
+    background:rgba(255,255,255,.02);
+    border:1px solid rgba(255,255,255,.04);
+}
+
+.menu a i{
+    width:22px;
+    text-align:center;
+    font-size:16px;
+}
+
+.menu a:hover{
+
+    transform:translateX(6px);
+
+    background:
+    linear-gradient(
+    90deg,
+    rgba(255,43,69,.20),
+    rgba(255,43,69,.05)
+    );
+
+    border-color:
+    rgba(255,43,69,.30);
+
+    color:#fff;
+}
+
+.menu a.active{
+
+    background:
+    linear-gradient(
+    90deg,
+    #ff2b45,
+    #ff5a6b
+    );
+
+    color:#fff;
+
+    border:none;
+
+    box-shadow:
+    0 0 20px rgba(255,43,69,.45),
+    0 0 40px rgba(255,43,69,.20);
+}
+
+    /* MAIN */
+
+    .main{
+    margin-left:280px;
+    padding:25px;
+    }
+
+    /* TOPBAR */
+
+    .topbar{
+    height:86px;
+    border-radius:22px;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    padding:0 25px;
+
+    background:
+    rgba(255,255,255,.04);
+
+    backdrop-filter:blur(20px);
+
+    border:
+    1px solid rgba(255,255,255,.05);
+
+    margin-bottom:30px;
+    }
+
+    .top-left{
+    display:flex;
+    align-items:center;
+    gap:20px;
+    }
+
+    .menu-btn{
+    font-size:24px;
+    cursor:pointer;
+    }
+
+    .search-box{
+    width:450px;
+    height:52px;
+    position:relative;
+    }
+
+    .search-box input{
+    width:100%;
+    height:100%;
+    background:
+    rgba(255,255,255,.04);
+
+    border:
+    1px solid rgba(255,255,255,.08);
+
+    border-radius:50px;
+
+    padding-left:55px;
+    padding-right:20px;
+
+    color:white;
+    outline:none;
+    }
+
+    .search-box i{
+    position:absolute;
+    left:20px;
+    top:18px;
+    color:#94a3b8;
+    }
+
+    .top-right{
+    display:flex;
+    align-items:center;
+    gap:15px;
+    }
+
+    .icon-btn{
+    width:50px;
+    height:50px;
+
+    border-radius:50%;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    background:
+    rgba(255,255,255,.04);
+
+    border:
+    1px solid rgba(255,255,255,.08);
+
+    cursor:pointer;
+
+    transition:.3s;
+    }
+
+    .icon-btn:hover{
+    background:#ff2b45;
+    }
+
+    .profile{
+    display:flex;
+    align-items:center;
+    gap:15px;
+    }
+
+    .profile-info h4{
+    font-size:18px;
+    }
+
+    .profile-info p{
+    font-size:13px;
+    color:#94a3b8;
+    }
+
+    .profile-avatar{
+    width:52px;
+    height:52px;
+    border-radius:50%;
+
+    background:
+    linear-gradient(
+    135deg,
+    #ff2b45,
+    #ef4444
+    );
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:22px;
+    }
+
+    /* PAGE TITLE */
+
+    .page-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:30px;
+    }
+
+    .page-header h1{
+    font-size:42px;
+    font-weight:800;
+    }
+
+    .page-header p{
+    color:#94a3b8;
+    margin-top:6px;
+    }
+
+    .date-box{
+    padding:15px 20px;
+    border-radius:16px;
+
+    background:
+    rgba(255,255,255,.04);
+
+    border:
+    1px solid rgba(255,255,255,.08);
+
+    }
+
+    /* STATS CARDS */
+
+    .stats-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:20px;
+    margin-bottom:30px;
+    }
+
+    .stat-card{
+    background:rgba(255,255,255,.04);
+    border:1px solid rgba(255,255,255,.08);
+    backdrop-filter:blur(20px);
+    border-radius:24px;
+    padding:25px;
+    position:relative;
+    overflow:hidden;
+    transition:.3s;
+    }
+
+    .stat-card:hover{
+    transform:translateY(-5px);
+    box-shadow:0 0 30px rgba(255,43,69,.25);
+    }
+
+    .stat-card::before{
+    content:'';
+    position:absolute;
+    right:-40px;
+    top:-40px;
+    width:120px;
+    height:120px;
+    background:rgba(255,43,69,.12);
+    border-radius:50%;
+    }
+
+    .card-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:15px;
+    }
+
+    .card-icon{
+    width:55px;
+    height:55px;
+    border-radius:16px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:22px;
+    background:linear-gradient(135deg,#ff2b45,#ef4444);
+    }
+
+    .card-title{
+    color:#94a3b8;
+    font-size:14px;
+    }
+
+    .card-value{
+    font-size:34px;
+    font-weight:800;
+    margin-top:8px;
+    }
+
+    /* DASHBOARD GRID */
+
+    .dashboard-grid{
+    display:grid;
+    grid-template-columns:2fr 1fr;
+    gap:20px;
+    margin-bottom:25px;
+    }
+
+    .chart-box,
+    .team-box,
+    .table-box{
+    background:rgba(255,255,255,.04);
+    border:1px solid rgba(255,255,255,.08);
+    backdrop-filter:blur(20px);
+    border-radius:24px;
+    padding:25px;
+    }
+
+    .chart-box h2,
+    .team-box h2,
+    .table-box h2{
+    margin-bottom:20px;
+    font-size:22px;
+    }
+
+    /* TEAM */
+
+    .team-member{
+    margin-bottom:18px;
+    }
+
+    .team-member span{
+    display:flex;
+    justify-content:space-between;
+    margin-bottom:8px;
+    }
+
+    .progress{
+    height:10px;
+    background:rgba(255,255,255,.08);
+    border-radius:50px;
+    overflow:hidden;
+    }
+
+    .progress div{
+    height:100%;
+    background:linear-gradient(90deg,#ff2b45,#ef4444);
+    border-radius:50px;
+    }
+
+    /* TABLE */
+
+    .table-box{
+    margin-top:20px;
+    }
+
+    table{
+    width:100%;
+    border-collapse:collapse;
+    }
+
+    table th{
+    text-align:left;
+    padding:15px;
+    color:#94a3b8;
+    border-bottom:1px solid rgba(255,255,255,.08);
+    }
+
+    table td{
+    padding:15px;
+    border-bottom:1px solid rgba(255,255,255,.05);
+    }
+
+    .status-badge{
+    padding:6px 12px;
+    border-radius:30px;
+    font-size:12px;
+    font-weight:600;
+    background:#ff2b45;
+    }
+
+    #crmChart{
+height:350px !important;
+width:100% !important;
+}
+.chart-box{
+min-height:450px;
+}
+
+.team-box{
+min-height:450px;
+}
+
+@media(max-width:1200px){
+
+.stats-grid{
+grid-template-columns:repeat(2,1fr);
+}
+
+.dashboard-grid{
+grid-template-columns:1fr;
+}
 
 }
 
-</style>
+@media(max-width:768px){
 
-</head>
-<body>
+.sidebar{
+display:none;
+}
+
+.main{
+margin-left:0;
+}
+
+.stats-grid{
+grid-template-columns:1fr;
+}
+
+.search-box{
+width:100%;
+}
+
+}
+
+.sidebar::-webkit-scrollbar{
+width:6px;
+}
+
+.sidebar::-webkit-scrollbar-track{
+background:transparent;
+}
+
+.sidebar::-webkit-scrollbar-thumb{
+background:#ff2b45;
+border-radius:20px;
+}
+
+.sidebar-user{
+margin-top:30px;
+padding:18px;
+background:rgba(255,255,255,.04);
+border:1px solid rgba(255,255,255,.08);
+border-radius:18px;
+
+display:flex;
+align-items:center;
+gap:15px;
+}
+
+.user-avatar{
+width:50px;
+height:50px;
+border-radius:50%;
+background:#ff2b45;
+
+display:flex;
+align-items:center;
+justify-content:center;
+}
+
+.logo-box{
+display:flex;
+align-items:center;
+gap:12px;
+margin-bottom:35px;
+padding-bottom:25px;
+border-bottom:1px solid rgba(255,255,255,.08);
+}
+
+.logo-box img{
+width:70px;
+}
+
+.logo-text h2{
+font-size:26px;
+font-weight:800;
+color:#ff2b45;
+margin:0;
+}
+
+.logo-text span{
+font-size:26px;
+font-weight:800;
+color:#fff;
+}
+
+.logout-btn{
+    width:100%;
+    margin-top:20px;
+    padding:15px;
+
+    border:none;
+    border-radius:16px;
+
+    background:linear-gradient(
+        90deg,
+        #dc2626,
+        #ef4444
+    );
+
+    color:white;
+    font-size:15px;
+    font-weight:600;
+    cursor:pointer;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+
+    transition:.3s;
+}
+
+.logout-btn:hover{
+    transform:translateY(-3px);
+    box-shadow:0 0 20px rgba(239,68,68,.4);
+}
+
+    </style>
+
+    </head>
+
+    <body>
 
     <div class="sidebar">
 
-        <div class="logo">
-            RECLICX CRM
-        </div>
+    <div class="logo-box">
 
-        <div class="menu">
+<img src="{{ asset('images/reclicx-logo.png') }}">
 
-            <a href="#">📊 Dashboard</a>
+<div class="logo-text">
+<h2>RECLICX</h2>
+<span>CRM</span>
+</div>
 
-<a href="{{ route('leads.index') }}">
-    📞 Leads
+</div>
+
+    <div class="menu">
+
+<a href="/admin" class="active">
+<i class="fas fa-chart-pie"></i>
+Dashboard
 </a>
 
-<a href="{{ route('users.create') }}">
-    👨‍💼 Team Leaders
+<a href="{{ route('leads.index') }}">
+<i class="fas fa-phone"></i>
+Leads
+</a>
+
+<a href="#">
+<i class="fas fa-user-tie"></i>
+Team Leaders
 </a>
 
 <a href="{{ route('users.index') }}">
-    👥 Users
+<i class="fas fa-users"></i>
+Users
 </a>
 
 <a href="{{ route('verification') }}">
-    ✅ Verification
+<i class="fas fa-check-circle"></i>
+Verification
 </a>
 
 <a href="{{ route('dispatch') }}">
-    🚚 Dispatch
+<i class="fas fa-truck"></i>
+Dispatch
 </a>
 
 <a href="{{ route('ndr') }}">
-    📦 NDR
+<i class="fas fa-box"></i>
+NDR
 </a>
 
 <a href="#">
-    📈 Reports
+<i class="fas fa-chart-line"></i>
+Reports
 </a>
 
 <a href="#">
-    ⚙ Settings
+<i class="fas fa-gear"></i>
+Settings
 </a>
 
-        </div>
+</div>
+
+<form method="POST" action="{{ route('logout') }}">
+    @csrf
+
+    <button type="submit" class="logout-btn">
+        <i class="fas fa-right-from-bracket"></i>
+        Logout
+    </button>
+</form>
+
+<div class="sidebar-user">
+
+<div class="user-avatar">
+<i class="fas fa-user"></i>
+</div>
+
+<div>
+<h4>Admin</h4>
+<p>Super Administrator</p>
+</div>
+
+</div>
 
     </div>
 
     <div class="main">
 
-        <div class="topbar">
+    <div class="topbar">
 
-            <h1>Admin Dashboard</h1>
+    <div class="top-left">
 
-            <div>
+    <div class="menu-btn">
+    <i class="fas fa-bars"></i>
+    </div>
 
-    <h3>
-        Welcome Admin
-    </h3>
+    <div class="search-box">
 
-    <br>
-
-    <form method="POST" action="{{ route('logout') }}">
-
-        @csrf
-
-        <button type="submit"
-            style="
-                background:red;
-                color:white;
-                border:none;
-                padding:10px 15px;
-                border-radius:6px;
-                cursor:pointer;
-            ">
-
-            Logout
-
-        </button>
-
-    </form>
-
-</div>
-
-        </div>
-
-        <div class="cards">
-
-            <div class="card">
-
-                <p>Total Leads</p>
-
-                <h2>{{ $totalLeads }}</h2>
-
-            </div>
-
-            <div class="card">
-
-                <p>Orders</p>
-
-                <h2>{{ $orders }}</h2>
-
-            </div>
-
-            <div class="card">
-
-                <p>Delivered</p>
-
-                <h2>{{ $delivered }}</h2>
-
-            </div>
-
-            <div class="card">
-
-                <p>Revenue</p>
-
-                <h2>₹{{ $revenue }}</h2>
-
-            </div>
-
-            <div class="card">
-
-    <p>Hold</p>
-
-    <h2>{{ $hold }}</h2>
-
-</div>
-
-<div class="card">
-
-    <p>Cancelled</p>
-
-    <h2>{{ $cancelled }}</h2>
-
-</div>
-
-<div class="card">
-
-    <p>RTO</p>
-
-    <h2>{{ $rto }}</h2>
-
-</div>
-
-<div class="card">
-
-    <p>Verification Pending</p>
-
-    <h2>{{ $verificationPending }}</h2>
-
-</div>
-
-<div class="card">
-
-    <p>Dispatch</p>
-
-    <h2>{{ $dispatch }}</h2>
-
-</div>
-
-        </div>
-
-        <div class="table-box">
-
-    <div class="filter-bar">
-
-<form method="GET" style="display:flex; gap:15px; flex-wrap:wrap; width:100%;">
+    <i class="fas fa-search"></i>
 
     <input
-        type="text"
-        name="search"
-        placeholder="Search customer or phone..."
-        value="{{ request('search') }}"
-    >
+    type="text"
+    placeholder="Search anything...">
 
-    <select name="status">
+    </div>
 
-        <option value="">All Status</option>
+    </div>
 
-        <option value="delivered">Delivered</option>
+    <div class="top-right">
 
-        <option value="hold">Hold</option>
+    <div class="icon-btn">
+    <i class="fas fa-bell"></i>
+    </div>
 
-        <option value="cancelled">Cancelled</option>
+    <div class="icon-btn">
+    <i class="fas fa-calendar"></i>
+    </div>
 
-        <option value="dispatch">Dispatch</option>
+    <div class="icon-btn">
+    <i class="fas fa-moon"></i>
+    </div>
 
-        <option value="rto">RTO</option>
+    <div class="profile">
 
-    </select>
+    <div class="profile-info">
+    <h4>Welcome, Admin</h4>
+    <p>Super Administrator</p>
+    </div>
 
-    <button type="submit" class="btn">
+    <div class="profile-avatar">
+    <i class="fas fa-user"></i>
+    </div>
 
-        Search
+    </div>
 
-    </button>
+    </div>
 
-    <a href="/export-leads"
-       class="export-btn">
+    </div>
 
-        Export CSV
+    <div class="page-header">
 
-    </a>
+    <div>
+    <h1>Dashboard</h1>
+    <p>Overview of your CRM performance</p>
+    </div>
 
-</form>
+    <div class="date-box">
+    {{ now()->format('F d, Y') }}
+    </div>
+
+    </div>
+
+    <!-- PART 2 yahan se start hoga -->
+
+    <div class="stats-grid">
+
+    <div class="stat-card">
+    <div class="card-top">
+    <div>
+    <div class="card-title">Total Leads</div>
+    <div class="card-value">{{ $totalLeads }}</div>
+    </div>
+    <div class="card-icon">
+    <i class="fas fa-users"></i>
+    </div>
+    </div>
+    </div>
+
+    <div class="stat-card">
+    <div class="card-top">
+    <div>
+    <div class="card-title">Orders</div>
+    <div class="card-value">{{ $orders }}</div>
+    </div>
+    <div class="card-icon">
+    <i class="fas fa-cart-shopping"></i>
+    </div>
+    </div>
+    </div>
+
+    <div class="stat-card">
+    <div class="card-top">
+    <div>
+    <div class="card-title">Delivered</div>
+    <div class="card-value">{{ $delivered }}</div>
+    </div>
+    <div class="card-icon">
+    <i class="fas fa-truck"></i>
+    </div>
+    </div>
+    </div>
+
+    <div class="stat-card">
+    <div class="card-top">
+    <div>
+    <div class="card-title">Revenue</div>
+    <div class="card-value">₹{{ $revenue }}</div>
+    </div>
+    <div class="card-icon">
+    <i class="fas fa-indian-rupee-sign"></i>
+    </div>
+    </div>
+    </div>
+
+    <div class="stat-card">
+    <div class="card-top">
+    <div>
+    <div class="card-title">Hold</div>
+    <div class="card-value">{{ $hold }}</div>
+    </div>
+    <div class="card-icon">
+    <i class="fas fa-pause"></i>
+    </div>
+    </div>
+    </div>
+
+    <div class="stat-card">
+    <div class="card-top">
+    <div>
+    <div class="card-title">Cancelled</div>
+    <div class="card-value">{{ $cancelled }}</div>
+    </div>
+    <div class="card-icon">
+    <i class="fas fa-xmark"></i>
+    </div>
+    </div>
+    </div>
+
+    <div class="stat-card">
+    <div class="card-top">
+    <div>
+    <div class="card-title">RTO</div>
+    <div class="card-value">{{ $rto }}</div>
+    </div>
+    <div class="card-icon">
+    <i class="fas fa-rotate-left"></i>
+    </div>
+    </div>
+    </div>
+
+    <div class="stat-card">
+    <div class="card-top">
+    <div>
+    <div class="card-title">Dispatch</div>
+    <div class="card-value">{{ $dispatch }}</div>
+    </div>
+    <div class="card-icon">
+    <i class="fas fa-box"></i>
+    </div>
+    </div>
+    </div>
+
+    </div>
+
+    <div class="dashboard-grid">
+
+<div class="chart-box">
+
+<h2>Lead Analytics</h2>
+
+<canvas id="crmChart"></canvas>
 
 </div>
 
-    <h2>Recent Leads</h2>
+<div class="team-box">
 
-    <table>
+<h2>Team Performance</h2>
 
-        <tr>
-            <th>Customer</th>
-            <th>Phone</th>
-            <th>Status</th>
-            <th>Agent</th>
-            <th>Amount</th>
-        </tr>
+<div class="team-member">
 
-        @foreach($recentLeads as $lead)
+<span>
+<b>Admin Team</b>
+<b>92%</b>
+</span>
 
-        <tr>
+<div class="progress">
+<div style="width:92%"></div>
+</div>
 
-            <td>{{ $lead->customer_name }}</td>
+</div>
 
-            <td>{{ $lead->phone }}</td>
+<div class="team-member">
 
-            <td>
+<span>
+<b>Team Leaders</b>
+<b>78%</b>
+</span>
 
-    <span class="status {{ $lead->status }}">
+<div class="progress">
+<div style="width:78%"></div>
+</div>
 
-        {{ str_replace('_',' ',$lead->status) }}
+</div>
 
-    </span>
+<div class="team-member">
 
-</td>
+<span>
+<b>Agents</b>
+<b>67%</b>
+</span>
 
-            <td>{{ $lead->agent->name ?? 'N/A' }}</td>
+<div class="progress">
+<div style="width:67%"></div>
+</div>
 
-            <td>₹{{ $lead->amount }}</td>
+</div>
 
-        </tr>
-
-        @endforeach
-
-    </table>
-
-<div style="margin-top:20px;">
-
-    {{ $recentLeads->links() }}
-
-</div>  
+</div>
 
 </div>
 
 <div class="table-box">
 
-    <h2>Lead Analytics</h2>
+<h2>Recent Leads</h2>
 
-    <canvas id="crmChart"></canvas>
+<table>
+
+<thead>
+
+<tr>
+
+<th>Lead ID</th>
+<th>Date</th>
+<th>Name</th>
+<th>Phone</th>
+<th>City</th>
+<th>Product</th>
+<th>Amount</th>
+<th>Source</th>
+<th>Team Leader</th>
+<th>Status</th>
+<th>Action</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+@foreach($recentLeads as $lead)
+
+<tr>
+
+<td>{{ $lead->id }}</td>
+
+<td>
+{{ $lead->created_at->format('d M Y') }}
+</td>
+
+<td>{{ $lead->customer_name }}</td>
+
+<td>{{ $lead->phone }}</td>
+
+<td>{{ $lead->city ?? '-' }}</td>
+
+<td>{{ $lead->product }}</td>
+
+<td>₹{{ $lead->amount }}</td>
+
+<td>{{ $lead->lead_source ?? 'Website' }}</td>
+
+<td>
+{{ $lead->teamLeader->name ?? 'Not Assigned' }}
+</td>
+
+<td>
+<span class="status-badge">
+{{ $lead->status }}
+</span>
+</td>
+
+<td>
+
+<a href="{{ route('leads.show',$lead->id) }}"
+class="btn">
+View
+</a>
+
+</td>
+
+</tr>
+
+@endforeach
+
+</tbody>
+
+</table>
 
 </div>
 
@@ -670,37 +984,24 @@ input::placeholder{
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <script>
-
 const ctx = document.getElementById('crmChart');
 
 new Chart(ctx, {
-
     type: 'bar',
-
     data: {
-
         labels: @json($chartLabels),
-
         datasets: [{
-            label: 'Lead Analytics',
+            label: 'Lead Status',
             data: @json($chartData),
             borderWidth: 1
         }]
     },
-
     options: {
-
         responsive: true,
-
-        scales: {
-            y: {
-                beginAtZero: true
-            }
-        }
+        maintainAspectRatio: false
     }
 });
-
 </script>
 
-</body>
-</html>
+    </body>
+    </html>
