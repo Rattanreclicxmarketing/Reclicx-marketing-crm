@@ -393,9 +393,6 @@
 <td>
     {{ $lead->awb_number ?? '-' }}
 </td>
-
-<td>
-
                 <td>
 
 
